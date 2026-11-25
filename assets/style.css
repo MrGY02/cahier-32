@@ -1,0 +1,170 @@
+/* Family album — self-contained, no tracking, no external requests. */
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("fonts/crimson-pro-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("fonts/crimson-pro-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("fonts/crimson-pro-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+:root {
+
+  --paper: #f3eee6;
+  --ink: #2a2723;
+  --muted: #6b645a;
+  --line: #d8cfc2;
+  --gold: #8a7348;
+  --tile: #e6ddd0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+body {
+  font-family: "Crimson Pro", Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 3rem 1.15rem 4.5rem; }
+header { text-align: center; padding: 2.2rem 0.5rem 1.8rem; }
+.kicker {
+  margin: 0;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+h1 {
+  font-weight: 500;
+  font-size: clamp(1.7rem, 5vw, 2.65rem);
+  letter-spacing: 0.01em;
+  margin: 0.95rem 0 0.4rem;
+  line-height: 1.2;
+}
+.dates {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  letter-spacing: 0.16em;
+  font-weight: 500;
+}
+.epitaph {
+  margin: 1.25rem 0 0;
+  font-style: italic;
+  font-size: 1.22rem;
+  font-weight: 400;
+}
+.rule {
+  width: 3.25rem;
+  height: 1px;
+  border: 0;
+  background: var(--gold);
+  margin: 1.6rem auto 0;
+}
+section { margin-top: 2.85rem; }
+section h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 1.1rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+}
+@media (min-width: 980px) {
+  .grid { grid-template-columns: repeat(4, 1fr); gap: 0.7rem; }
+}
+.tile {
+  display: block;
+  background: var(--tile);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+footer { margin-top: 4rem; text-align: center; }
+.downloads, .downloads a {
+  color: var(--muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+.downloads a { border-bottom: 1px solid var(--line); }
+.downloads a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+.video { max-width: 720px; margin: 0 auto 1.5rem; }
+.video h3 { font-weight: 500; text-align: center; font-size: 1rem; }
+.video-frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #111; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video video { width: 100%; display: block; background: #111; }
+
+#lightbox[hidden] { display: none; }
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.94);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#lightbox-img {
+  max-width: 94vw;
+  max-height: 88vh;
+  object-fit: contain;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.lb-close, .lb-prev, .lb-next {
+  position: absolute;
+  background: none;
+  border: 0;
+  color: #f3eee6;
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  opacity: 0.85;
+}
+.lb-close { top: 0.4rem; right: 0.6rem; font-size: 2.2rem; }
+.lb-prev { left: 0.2rem; }
+.lb-next { right: 0.2rem; }
+.lb-download {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f3eee6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  text-decoration: none;
+  opacity: 0.85;
+  letter-spacing: 0.04em;
+}
+.lb-close:hover, .lb-prev:hover, .lb-next:hover, .lb-download:hover { opacity: 1; }
+body.lb-open { overflow: hidden; }
